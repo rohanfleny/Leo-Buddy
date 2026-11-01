@@ -1,0 +1,19 @@
+# Example only. Replace every YOUR_PI_USERNAME and repository path before use.
+[Unit]
+Description=Leo Buddy voice assistant (wait for ESP32 switch)
+Wants=network-online.target
+After=network-online.target sound.target
+
+[Service]
+Type=simple
+User=YOUR_PI_USERNAME
+SupplementaryGroups=audio dialout
+Environment=HOME=/home/YOUR_PI_USERNAME
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=/home/YOUR_PI_USERNAME/leo-buddy
+ExecStart=/home/YOUR_PI_USERNAME/leo-buddy/run_voice_demo.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
